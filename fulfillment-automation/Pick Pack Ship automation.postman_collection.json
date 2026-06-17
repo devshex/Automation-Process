@@ -138,6 +138,118 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "dynamic pick",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_08u5}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"packageName\": \"A\",\n    \"facilityId\": \"{{facilityId}}\",\n    \"shipmentMethodTypeId\": \"STANDARD\",\n    \"statusId\": \"PICKLIST_ASSIGNED\",\n    \"pickers\": [\n        {\n            \"partyId\": \"{{pickerPartyId}}\",\n            \"roleTypeId\": \"WAREHOUSE_PICKER\"\n        }\n    ],\n    \"orderItems\": [\n        {\n            \"orderId\": \"{{orderId}}\",\n            \"orderItemSeqId\": \"{{orderItemSeqId}}\",\n            \"shipGroupSeqId\": \"{{shipGroupSeqId}}\",\n            \"productId\": \"{{productId}}\",\n            \"quantity\": 1\n        }\n    ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/createOrderFulfillmentWave",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "createOrderFulfillmentWave"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "dynamic pack",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_08u5}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"shipmentId\": \"{{shipmentId}}\",\n    \"orderId\": \"{{orderId}}\",\n    \"facilityId\": \"{{facilityId}}\",\n    \"rejectedOrderItems\": [],\n    \"shipmentPackageContents\": []\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shipments/{{shipmentId}}/pack",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipments",
+                "{{shipmentId}}",
+                "pack"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "dynamic ship",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{json_web_token_08u5}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shipmentId\": \"{{shipmentId}}\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shipments/{{shipmentId}}/ship",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "shipments",
+                "{{shipmentId}}",
+                "ship"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     }
