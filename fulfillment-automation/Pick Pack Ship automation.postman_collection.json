@@ -1,0 +1,155 @@
+{
+  "info": {
+    "_postman_id": "f14f8934-506e-4091-b5fb-b971b297c1c0",
+    "name": "Pick Pack Ship automation",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52250737"
+  },
+  "item": [
+    {
+      "name": "Rakshit Sir june 13 assignment",
+      "item": [
+        {
+          "name": "PICKING THE ITEM",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_08u5}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"packageName\": \"A\",\n    \"facilityId\": \"DEMO_FACILITY\",\n    \"shipmentMethodTypeId\": \"STANDARD\",\n    \"statusId\": \"PICKLIST_ASSIGNED\",\n    \"pickers\": [\n        {\n            \"partyId\": \"10003\",\n            \"roleTypeId\": \"WAREHOUSE_PICKER\"\n        }\n    ],\n    \"orderItems\": [\n        {\n            \"orderId\": \"181\",\n            \"orderItemSeqId\": \"00101\",\n            \"shipGroupSeqId\": \"00002\",\n            \"productId\": \"M102978\",\n            \"quantity\": 1\n        }\n    ]\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://nextgen-maarg.hotwax.io/rest/s1/poorti/createOrderFulfillmentWave",
+              "protocol": "https",
+              "host": [
+                "nextgen-maarg",
+                "hotwax",
+                "io"
+              ],
+              "path": [
+                "rest",
+                "s1",
+                "poorti",
+                "createOrderFulfillmentWave"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PACK THE ITEM",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{auth_secret_08u5}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"shipmentId\": \"M100424\",\n    \"orderId\": \"181\",\n    \"facilityId\": \"DEMO_FACILITY\",\n    \"rejectedOrderItems\": [],\n    \"shipmentPackageContents\": []\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://nextgen-maarg.hotwax.io/rest/s1/poorti/shipments/M100424/pack",
+              "protocol": "https",
+              "host": [
+                "nextgen-maarg",
+                "hotwax",
+                "io"
+              ],
+              "path": [
+                "rest",
+                "s1",
+                "poorti",
+                "shipments",
+                "M100424",
+                "pack"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "SHIPPING THE ITEM",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{json_web_token_08u5}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"shipmentId\": \"M100424\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://nextgen-maarg.hotwax.io/rest/s1/poorti/shipments/M100424/ship",
+              "protocol": "https",
+              "host": [
+                "nextgen-maarg",
+                "hotwax",
+                "io"
+              ],
+              "path": [
+                "rest",
+                "s1",
+                "poorti",
+                "shipments",
+                "M100424",
+                "ship"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "auth_secret_08u5",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_08u5",
+      "secret": true
+    }
+  ]
+}
